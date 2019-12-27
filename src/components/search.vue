@@ -93,7 +93,7 @@ header .search .wrapper img {
   width: 30px;
   height: 30px;
   margin: 10px 20px;
-  opacity: 50%;
+  opacity: 60%;
 }
 header .search .wrapper img:nth-child(2) {
   width: 24px;
@@ -105,6 +105,6 @@ header .search .wrapper img:nth-child(1) {
 }
 header .search .wrapper img.active {
   transform: scale(1.1);
-  opacity: 1;
+  opacity: 100%;
 }
 </style>
