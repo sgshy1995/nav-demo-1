@@ -1,5 +1,22 @@
 # nav-demo-1
 
+## 使用
+
+- JavaScript
+- CSS 3
+- Vue
+- LeanCloud
+- NodeJs
+
+## 功能
+
+**前端导航站点**：
+
+- 完美适配移动端/PC端。
+- 自由增/删/改导航地址。
+- 可以用四种不同引擎搜索。
+- 留言功能。
+
 ## Project setup
 ```
 yarn install
