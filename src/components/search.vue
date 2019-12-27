@@ -50,7 +50,7 @@ header .search .two {
   top: -20%;
   right: -40%;
   transform: rotate(45deg);
-  opacity: 70%;
+  opacity: 0.7;
   animation: 14s runner linear infinite;
   z-index: -1;
 }
@@ -72,7 +72,7 @@ header .search input {
   border-radius: 4px;
   border: 1px solid black;
   padding: 5px;
-  opacity: 70%;
+  opacity: 0.7;
 }
 header .search input:focus {
   outline: none;
@@ -81,7 +81,7 @@ header .search button {
   border: 1px solid black;
   border-radius: 5px;
   background: white;
-  opacity: 70%;
+  opacity: 0.7;
   padding: 2px;
 }
 header .search .wrapper {
@@ -93,7 +93,7 @@ header .search .wrapper img {
   width: 30px;
   height: 30px;
   margin: 10px 20px;
-  opacity: 60%;
+  opacity: 0.5;
 }
 header .search .wrapper img:nth-child(2) {
   width: 24px;
@@ -105,6 +105,6 @@ header .search .wrapper img:nth-child(1) {
 }
 header .search .wrapper img.active {
   transform: scale(1.1);
-  opacity: 100%;
+  opacity: 1;
 }
 </style>
