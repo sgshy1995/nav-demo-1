@@ -4,19 +4,53 @@
     <div class="two"></div>
     <span>想 看 点 什 么 ？</span>
     <br />
-    <input type="text" />
-    <button>搜 索</button>
+    <form class="searchForm" method="get" :action="'https://'+search[n].url+search[n].path" target="_blank">
+      <input type="text" :name="search[n].name" />
+      <button>搜 索</button>
+    </form>
     <div class="wrapper">
-      <img src="../assets/google.png" alt="google" class="active" />
-      <img src="../assets/baidu.png" alt="baidu" />
-      <img src="../assets/yahoo.png" alt="yahoo" />
-      <img src="../assets/bing.png" alt="bing" />
+      <img src="../assets/google.png" alt="google" @click="n=0" :class="{active:n===0}" />
+      <img src="../assets/baidu.png" alt="baidu"  @click="n=1"  :class="{active:n===1}" />
+      <img src="../assets/yahoo.png" alt="yahoo"  @click="n=2"  :class="{active:n===2}" />
+      <img src="../assets/bing.png" alt="bing"  @click="n=3"  :class="{active:n===3}" />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return{
+      n:0,
+      search:[
+        {
+        type:'google',
+        url:'google.com',
+        path:'/search',
+        name:'q'
+        },
+        {
+        type:'baidu',
+        url:'baidu.com',
+        path:'/s',
+        name:'wd'
+        },
+        {
+        type:'yahoo',
+        url:'zh.search.yahoo.com',
+        path:'/search',
+        name:'q'
+        },
+        {
+        type:'bing',
+        url:'cn.bing.com',
+        path:'/search',
+        name:'q'
+        }
+      ]
+    }
+  }
+};
 </script>
 
 <style lang="scss">
@@ -71,7 +105,7 @@ header .search input {
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid black;
-  padding: 5px;
+  padding: 5px 10px;
   opacity: 0.7;
 }
 header .search input:focus {
@@ -82,7 +116,7 @@ header .search button {
   border-radius: 5px;
   background: white;
   opacity: 0.7;
-  padding: 2px;
+  padding: 5px;
 }
 header .search .wrapper {
   display: flex;
@@ -94,6 +128,7 @@ header .search .wrapper img {
   height: 30px;
   margin: 10px 20px;
   opacity: 0.5;
+  transition: all 0.4s;
 }
 header .search .wrapper img:nth-child(2) {
   width: 24px;

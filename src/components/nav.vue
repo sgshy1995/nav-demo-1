@@ -38,6 +38,7 @@ header nav .introduce .text{
   display: flex;
   flex-direction: column;
   align-items: center;
+  white-space: nowrap;
 }
 header nav .introduce .text span:first-child{
   font-size: 16px;
