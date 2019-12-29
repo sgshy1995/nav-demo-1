@@ -4,15 +4,14 @@
     <div class="two"></div>
     <span>想 看 点 什 么 ？</span>
     <br />
-    <form class="searchForm" method="get" :action="'https://'+search[n].url+search[n].path" target="_blank">
+    <form class="searchForm" method="get" :action="'https://'+search[n].url+search[n].path">
       <input type="text" :name="search[n].name" />
       <button>搜 索</button>
     </form>
     <div class="wrapper">
-      <img src="../assets/google.png" alt="google" @click="n=0" :class="{active:n===0}" />
-      <img src="../assets/baidu.png" alt="baidu"  @click="n=1"  :class="{active:n===1}" />
-      <img src="../assets/yahoo.png" alt="yahoo"  @click="n=2"  :class="{active:n===2}" />
-      <img src="../assets/bing.png" alt="bing"  @click="n=3"  :class="{active:n===3}" />
+      <img v-for="(u,index) in search" :key="index" 
+      :src="require('../assets/'+u.type+'.png')" :alt="u.type" 
+      @click="n=index" :class="{active:n===index}" />
     </div>
   </div>
 </template>
@@ -56,12 +55,12 @@ export default {
 <style lang="scss">
 header .search {
   width: 100%;
-  height: 192px;
+  height: 262px;
   background: #16a1a1;
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 90px;
   z-index: 0;
 }
 header .search .one {
@@ -76,13 +75,13 @@ header .search .one {
   z-index: -1;
 }
 header .search .two {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   background: #445cb6;
   border-radius: 40px;
   position: absolute;
-  top: -20%;
-  right: -40%;
+  top: 10%;
+  right: 0;
   transform: rotate(45deg);
   opacity: 0.7;
   animation: 14s runner linear infinite;

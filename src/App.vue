@@ -6,6 +6,9 @@
     <span class="tittle">常 用 链 接</span>
   </section>
   <Main />
+  <section class="clearLC">
+    <button @click="clearLC">恢 复 默 认</button>
+  </section>
 </body>
 </template>
 
@@ -16,6 +19,12 @@ export default {
   components: {
     Header: Header,
     Main: Main
+  },
+  methods:{
+    clearLC(){
+      window.localStorage.clear()
+      window.location.reload()
+    }
   }
 };
 </script>
@@ -40,12 +49,24 @@ body .symbol-tittle{
   align-items: center;
   margin: 20px;
 }
-body .symbol {
+body .symbol-tittle .symbol {
   font-size: 26px;
   color: #3ab982;
 }
-body .tittle {
+body .symbol-tittle .tittle {
   margin-left: 10px;
   font-size: 20px;
+}
+body .clearLC{
+  display: flex;
+  justify-content: center;
+}
+body .clearLC button{
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  background: #efefee;
+  margin: 10px 0;
 }
 </style>
