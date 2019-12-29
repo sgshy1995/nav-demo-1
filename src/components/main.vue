@@ -2,7 +2,7 @@
   <main>
     <div v-for="(u,index) in website" :key="index" class="website">
       <span class="numberIndex" id="numberIndex" style="display:none">{{index}}</span>
-      <div class="goToUrl" @click="goToUrl">
+      <div class="goToUrl" @click.stop="goToUrl">
         <span class="keys">{{u.name}}</span>
         <br />
         <!-- <img alt="u" :src="'https://'+u.url+'/favicon.ico'" class="get-ico" /> -->
