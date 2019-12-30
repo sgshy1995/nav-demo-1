@@ -23,10 +23,16 @@ export default {
     Main: Main,
     Height: Height
   },
+  mounted(){
+    window.addEventListener("beforeunload", this.reloadWeb);
+  },
   methods:{
     clearLC(){
       window.localStorage.clear()
       window.location.reload()
+    },
+    reloadWeb(){
+      window.scrollTo(0,0);
     }
   }
 };
