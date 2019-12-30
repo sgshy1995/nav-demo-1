@@ -2,16 +2,21 @@
   <div class="search">
     <div class="one"></div>
     <div class="two"></div>
-    <span>想 看 点 什 么 ？</span>
+    <span class="what-to-see">想 看 点 什 么 ？</span>
     <br />
     <form class="searchForm" method="get" :action="'https://'+search[n].url+search[n].path">
       <input type="text" :name="search[n].name" />
       <button>搜 索</button>
     </form>
     <div class="wrapper">
-      <img v-for="(u,index) in search" :key="index" 
-      :src="require('../assets/'+u.type+'.png')" :alt="u.type" 
-      @click="n=index" :class="{active:n===index}" />
+      <img
+        v-for="(u,index) in search"
+        :key="index"
+        :src="require('../assets/'+u.type+'.png')"
+        :alt="u.type"
+        @click="n=index"
+        :class="{active:n===index}"
+      />
     </div>
   </div>
 </template>
@@ -19,35 +24,35 @@
 <script>
 export default {
   data() {
-    return{
-      n:0,
-      search:[
+    return {
+      n: 0,
+      search: [
         {
-        type:'google',
-        url:'google.com',
-        path:'/search',
-        name:'q'
+          type: "google",
+          url: "google.com",
+          path: "/search",
+          name: "q"
         },
         {
-        type:'baidu',
-        url:'baidu.com',
-        path:'/s',
-        name:'wd'
+          type: "baidu",
+          url: "baidu.com",
+          path: "/s",
+          name: "wd"
         },
         {
-        type:'yahoo',
-        url:'zh.search.yahoo.com',
-        path:'/search',
-        name:'q'
+          type: "yahoo",
+          url: "zh.search.yahoo.com",
+          path: "/search",
+          name: "q"
         },
         {
-        type:'bing',
-        url:'cn.bing.com',
-        path:'/search',
-        name:'q'
+          type: "bing",
+          url: "cn.bing.com",
+          path: "/search",
+          name: "q"
         }
       ]
-    }
+    };
   }
 };
 </script>
@@ -87,6 +92,19 @@ header .search .two {
   animation: 14s runner linear infinite;
   z-index: -1;
 }
+@media (min-width: 900px) {
+  header .search .two {
+    width: 600px;
+    height: 600px;
+    top: -50%;
+    right: -30%;
+  }
+  header .search button:hover{
+    color: #0dbb33;
+    border: 1px solid #0dbb33;
+    cursor: pointer;
+  }
+}
 @keyframes runner {
   from {
     transform: rotate(45deg);
@@ -98,6 +116,7 @@ header .search .two {
 header .search span {
   font-size: 22px;
   color: white;
+  cursor: default;
 }
 header .search input {
   margin: 20px;
@@ -116,6 +135,7 @@ header .search button {
   background: white;
   opacity: 0.7;
   padding: 5px;
+  transition: all 0.5s;
 }
 header .search .wrapper {
   display: flex;
@@ -128,6 +148,7 @@ header .search .wrapper img {
   margin: 10px 20px;
   opacity: 0.5;
   transition: all 0.4s;
+  cursor: pointer;
 }
 header .search .wrapper img:nth-child(2) {
   width: 24px;

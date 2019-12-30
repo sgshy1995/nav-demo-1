@@ -16,8 +16,8 @@
     </div>
     <div class="menulist" id="menulist" :class="{active:change}">
       <ul>
-        <li :class="{active:change}" @click.stop="toGit">项 目 源 码</li>
-        <li :class="{active:change}" @click.stop="toBlog">个 人 博 客</li>
+        <li :class="{active:change}" @click.stop="toGit" id="toGit">项 目 源 码</li>
+        <li :class="{active:change}" @click.stop="toBlog" id="toBlog">个 人 博 客</li>
         <li :class="{active:change}">Made by Eden</li>
         <li :class="{active:change}">V 1.0.1</li>
       </ul>
@@ -68,6 +68,7 @@ header nav .introduce .text {
   flex-direction: column;
   align-items: center;
   white-space: nowrap;
+  cursor: default;
 }
 header nav .introduce .text span:first-child {
   font-size: 16px;
@@ -92,6 +93,13 @@ header nav .menu .img img {
   height: 32px;
   margin-right: 20px;
   transition: all 0.5s;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+@media (min-width: 900px){
+header nav .menu .img img:hover{
+  transform: scale(1.1);
+}
 }
 header nav .menu .img img.active{
   background: #cccccc;
@@ -117,6 +125,25 @@ header nav .menulist ul li {
   padding: 10px 60px;
   border-bottom: none;
   font-family: kai;
+  cursor: default;
+}
+header nav .menulist ul li#toGit:hover{
+  cursor: pointer;
+}
+header nav .menulist ul li#toBlog:hover{
+  cursor: pointer;
+}
+@media(min-width: 900px){
+  header nav .menulist ul li{
+    padding: 16px 100px;
+    font-size: 18px;
+  }
+  header nav .menulist ul li#toGit:hover{
+    color: #aaaaaa;
+  }
+  header nav .menulist ul li#toBlog:hover{
+    color: #aaaaaa;
+  }
 }
 header nav .menulist ul li:nth-child(1) {
   transform: translateX(120%);

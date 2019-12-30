@@ -58,6 +58,11 @@ body .symbol-tittle{
   align-items: center;
   margin: 20px;
 }
+@media (min-width: 900px) {
+  body .symbol-tittle{
+    justify-content: center;
+  }
+}
 body .symbol-tittle .symbol {
   font-size: 26px;
   color: #3ab982;
@@ -77,5 +82,12 @@ body .clearLC button{
   font-size: 14px;
   background: #efefee;
   margin: 10px 0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+body .clearLC button:hover{
+  color: saddlebrown;
+  border: 1px solid saddlebrown;
+  padding: 6px 12px;
 }
 </style>

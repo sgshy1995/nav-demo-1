@@ -47,13 +47,19 @@ export default {
 section.height {
   position: fixed;
   border: 1px solid #515151;
-  bottom: 1%;
-  right: 2%;
+  bottom: 3%;
+  right: 6%;
   padding: 10px 10px 5px 10px;
   border-radius: 5px;
   z-index: 4;
   transform: translateX(200%);
   transition: all 0.5s;
+  cursor: pointer;
+}
+@media (min-width: 700px){
+    section.height{
+        transform: translateX(400%);
+    }
 }
 section.height.active {
   transform: translateX(0);
