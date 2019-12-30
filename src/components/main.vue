@@ -6,7 +6,7 @@
         <span class="keys">{{u.name}}</span>
         <br />
         <!-- <img alt="u" :src="'https://'+u.url+'/favicon.ico'" class="get-ico" /> -->
-        <img :src="'https://favicon.link/'+u.url+'/'" alt />
+        <img :src="'https://favicon.link/'+u.url+'/'" alt="u.name" class="icon-img" />
       </div>
       <!-- <span class="webs-one">(URL)</span> -->
       <span class="webs-two">{{u.url}}</span>
@@ -236,8 +236,8 @@ main div.website .goToUrl {
   height: 65%;
   z-index: 1;
 }
-main div.website .goToUrl img {
-  width: 20px;
+main div.website .goToUrl img.icon-img {
+  width: 26px;
 }
 main div.website img#edit-button {
   position: absolute;

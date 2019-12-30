@@ -1,7 +1,7 @@
 <template>
 <body>
   <Header />
-  <section class="symbol-tittle">
+  <section class="symbol-tittle" id="sym">
     <span class="symbol">#</span>
     <span class="tittle">常 用 链 接</span>
   </section>
@@ -9,16 +9,19 @@
   <section class="clearLC">
     <button @click="clearLC">恢 复 默 认</button>
   </section>
+  <Height />
 </body>
 </template>
 
 <script>
 import Header from "./components/header";
 import Main from "./components/main";
+import Height from "./components/height"
 export default {
   components: {
     Header: Header,
-    Main: Main
+    Main: Main,
+    Height: Height
   },
   methods:{
     clearLC(){
