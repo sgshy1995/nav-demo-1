@@ -46,11 +46,11 @@
         type="text"
         placeholder="名 称"
         maxlength="12"
-        v-model.trim="updateForm.name"
+        v-model.trim.lazy="updateForm.name"
       />
       <div style="font-size:12px; display:none; color:#E8EAED" id="four">名称不可为空</div>
       <br />
-      <input type="text" placeholder="网 址" v-model.trim="updateForm.url" />
+      <input type="text" placeholder="网 址" v-model.trim.lazy="updateForm.url" />
       <div style="font-size:12px; display:none; color:#E8EAED" id="three">请输入正确的网址</div>
       <br />
       <span class="method" @click="editUrl">确 认</span>
@@ -101,10 +101,10 @@ export default {
     form: {
       handler: function() {
         this.form.url = this.form.url
-          .replace("http://", "")
+          .replace("https://", "")
           .replace("http://", "")
           .replace("http:", "")
-          .replace(/\/.*/, "");
+          // .replace(/\/.*/, "") 
       },
       deep: true
     },
@@ -125,8 +125,9 @@ export default {
     updateForm: {
       handler: function() {
         this.updateForm.url = this.updateForm.url
+          .replace("https://", "")
           .replace("http://", "")
-          .replace("http://", "");
+          .replace("http:", "");
         //.replace(/\/.*/, "");
       },
       deep: true
@@ -134,7 +135,7 @@ export default {
   },
   methods: {
     addUrl() {
-      //this.$set(this.website,'E','xiedaimala.com')
+      //this.$set(this.website,'E','ele.me')
       if (this.form.url.indexOf(".") === -1) {
         document.getElementById("one").style.display = "block";
         document.getElementById("two").style.display = "none";
