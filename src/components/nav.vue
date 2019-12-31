@@ -225,6 +225,7 @@ header nav .menulist {
   color: cadetblue;
   border-bottom-left-radius: 10px;
   text-align: center;
+  overflow: hidden;
 }
 header nav .menulist.active {
   transform: translateX(0);
@@ -261,16 +262,6 @@ header nav .menulist ul li:nth-child(1) {
 header nav .menulist ul li:nth-child(2) {
   transform: translateX(150%);
   transition: 0.7s;
-  border-bottom: 1px solid #cccccc;
-}
-header nav .menulist ul li:nth-child(3) {
-  transform: translateX(180%);
-  transition: 0.9s;
-  border-bottom: 1px solid #cccccc;
-}
-header nav .menulist ul li:nth-child(4) {
-  transform: translateX(210%);
-  transition: 1.1s;
 }
 header nav .menulist ul li.active {
   transform: translateX(0);
