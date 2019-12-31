@@ -1,12 +1,52 @@
 <template>
   <nav>
+    <div class="version-wrapper" :class="{active:version}">
+      <div class="version-text">
+        <h2>欢迎来到 南屋流星</h2>
+        <br />
+        <span>版本: V 1.0.1.3/ MIT 许可</span>
+        <br />
+        <span>框架: Vue</span>
+        <br />
+        <span>作者: Eden Sheng</span>
+        <br />
+        <span>Email: singlesaulwork@gmail.com</span>
+        <br />
+        <br />
+        <span>功能介绍:</span>
+        <br />
+        <br />
+        <ol>
+          <li>PC/移动端适配</li>
+          <li>四种主流搜索引擎自由切换</li>
+          <li>动态获取网址 favicon.ico</li>
+          <li>自由的增/删/改功能</li>
+          <li>有时效性的保存</li>
+          <li>自动过滤输入网址协议</li>
+          <li>名称最长12个字符（包含中文）</li>
+          <li>一键还原</li>
+          <li>一键回到顶部（一定高度显示）</li>
+          <li>只显示网址的缩写，你的二次复制是不可取的</li>
+        </ol>
+        <br />
+        <span>：）</span>
+        <br />
+        <br />
+        <span class="version-close" id="version-close" @click="version=false">关 闭</span>
+      </div>
+    </div>
     <div class="introduce">
       <div class="img">
-        <img src="../assets/logo.png" alt="logo" />
+        <img src="../assets/logov2.png" alt="logo" />
       </div>
       <div class="text">
         <span>导航站点</span>
         <span>灵感来源于生活</span>
+      </div>
+    </div>
+    <div class="version">
+      <div class="img" @click="version=true">
+        <img src="../assets/version.png" alt />
       </div>
     </div>
     <div class="menu">
@@ -18,8 +58,8 @@
       <ul>
         <li :class="{active:change}" @click.stop="toGit" id="toGit">项 目 源 码</li>
         <li :class="{active:change}" @click.stop="toBlog" id="toBlog">个 人 博 客</li>
-        <li :class="{active:change}">Made by Eden</li>
-        <li :class="{active:change}">V 1.0.1</li>
+        <!-- <li :class="{active:change}">V 1.0.2 功能</li>
+        <li :class="{active:change}">V 1.0.3 功能</li>-->
       </ul>
     </div>
   </nav>
@@ -29,18 +69,19 @@
 export default {
   data() {
     return {
-      change: false
+      change: false,
+      version: false
     };
   },
   methods: {
     styleChange() {
       this.change = !this.change;
     },
-    toGit(){
-      window.location.href = 'https://github.com/sgshy1995/nav-demo-1'
+    toGit() {
+      window.location.href = "https://github.com/sgshy1995/nav-demo-1";
     },
-    toBlog(){
-      window.location.href = 'http://eden-sheng.cn'
+    toBlog() {
+      window.location.href = "http://eden-sheng.cn";
     }
   }
 };
@@ -58,6 +99,38 @@ header nav {
   width: 100%;
   flex-shrink: 0;
   z-index: 4;
+}
+header nav .version-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: 0.8;
+  z-index: 4;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  transform: translateY(-100%);
+  transition: all 0.5s;
+}
+header nav .version-wrapper.active {
+  transform: translateY(0);
+}
+header nav .version-wrapper .version-close {
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+header nav .version-wrapper .version-text ol {
+  margin-left: 20px;
+}
+header nav .version-wrapper .version-text ol li {
+  list-style: circle;
 }
 header nav .introduce {
   display: flex;
@@ -95,16 +168,51 @@ header nav .menu .img img {
   transition: all 0.5s;
   cursor: pointer;
   transition: transform 0.5s;
+  margin: 0 auto;
 }
-@media (min-width: 900px){
-header nav .menu .img img:hover{
-  transform: scale(1.1);
+header nav .version {
+  transform: translateX(100%);
+  transition: all 0.5s;
+  position: relative;
 }
+header nav .version .img {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.5s;
+  cursor: pointer;
 }
-header nav .menu .img img.active{
+@media (min-width: 900px) {
+  header nav .version {
+    transform: translateX(800%);
+  }
+  header nav .version:hover .img {
+    border: 1px solid black;
+  }
+  header nav .version:hover .img img {
+    opacity: 1;
+  }
+}
+header nav .version .img img {
+  width: 32px;
+  height: 32px;
+  transition: all 0.5s;
+  cursor: pointer;
+  transition: transform 0.5s;
+  opacity: 0.5;
+  transition: all 0.5s;
+}
+header nav .menu .img img.active {
   background: #cccccc;
   border-radius: 50%;
   transform: rotate(90deg);
+}
+@media (min-width: 900px) {
+  header nav .menu .img img:hover {
+    transform: scale(1.1);
+  }
 }
 header nav .menulist {
   background: #f4fafa;
@@ -127,21 +235,21 @@ header nav .menulist ul li {
   font-family: kai;
   cursor: default;
 }
-header nav .menulist ul li#toGit:hover{
+header nav .menulist ul li#toGit:hover {
   cursor: pointer;
 }
-header nav .menulist ul li#toBlog:hover{
+header nav .menulist ul li#toBlog:hover {
   cursor: pointer;
 }
-@media(min-width: 900px){
-  header nav .menulist ul li{
+@media (min-width: 900px) {
+  header nav .menulist ul li {
     padding: 16px 100px;
     font-size: 18px;
   }
-  header nav .menulist ul li#toGit:hover{
+  header nav .menulist ul li#toGit:hover {
     color: #aaaaaa;
   }
-  header nav .menulist ul li#toBlog:hover{
+  header nav .menulist ul li#toBlog:hover {
     color: #aaaaaa;
   }
 }

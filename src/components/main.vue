@@ -1,48 +1,62 @@
 <template>
   <main>
     <div class="main-wrapper">
-    <div v-for="(u,index) in website" :key="index" class="website">
-      <span class="numberIndex" id="numberIndex" style="display:none">{{index}}</span>
-      <div class="goToUrl" @click.stop="goToUrl">
-        <span class="keys">{{u.name}}</span>
-        <br />
-        <!-- <img alt="u" :src="'https://'+u.url+'/favicon.ico'" class="get-ico" /> -->
-        <img :src="'https://favicon.link/'+u.url+'/'" alt="icon" class="icon-img" />
+      <div v-for="(u,index) in website" :key="index" class="website">
+        <span class="numberIndex" id="numberIndex" style="display:none">{{index}}</span>
+        <div class="goToUrl" @click.stop="goToUrl">
+          <span class="keys">{{u.name}}</span>
+          <br />
+          <!-- <img alt="u" :src="'https://'+u.url+'/favicon.ico'" class="get-ico" /> -->
+          <img :src="'https://favicon.link/'+u.url+'/'" alt="icon" class="icon-img" />
+        </div>
+        <!-- <span class="webs-one">(URL)</span> -->
+        <span class="webs-two">{{showUrl[index]}}</span>
+        <img src="../assets/edit.png" alt="edit" id="edit-button" @click.stop="edit" />
+        <img src="../assets/delete.png" alt="delete" id="delete-button" @click.stop="deleteUrl" />
       </div>
-      <!-- <span class="webs-one">(URL)</span> -->
-      <span class="webs-two">{{u.url}}</span>
-      <img src="../assets/edit.png" alt="edit" id="edit-button" @click.stop="edit" />
-      <img src="../assets/delete.png" alt="delete" id="delete-button" @click.stop="deleteUrl" />
-    </div>
-    <div class="create-website">
-      <span>新 增 网 站</span>
-      <br />
-      <img src="../assets/add.png" alt="add" id="add-button" @click="seeOne=true" />
-    </div>
-
+      <div class="create-website">
+        <span>新 增 网 站</span>
+        <br />
+        <img src="../assets/add.png" alt="add" id="add-button" @click="seeOne=true" />
+      </div>
     </div>
     <section class="input-wrapper" :class="{active:seeOne}">
-      <span>新 增 网 址：</span>
-      <br>
-      <input type="text" placeholder="网址（自动过滤）"  maxlength="30" v-model.trim.lazy="form.url" />
-      <div style="color:red; font-size:16px; display:none" id="one">请输入正确的网址</div>
-      <input type="text" placeholder="名称（最多12字）" maxlength="12" v-model.trim.lazy="form.name" />
-      <div style="color:red; font-size:16px; display:none" id="two">名称不可为空</div>
+      <span style="line-height:30px; cursor:default;">新增快捷网址</span>
+      <br />
+      <input
+        style="margin-top:10px;"
+        type="text"
+        placeholder="名 称"
+        maxlength="12"
+        v-model.trim.lazy="form.name"
+      />
+      <div style="color:red; font-size:12px; display:none; color:#E8EAED" id="two">名称不可为空</div>
+      <br />
+      <input type="text" placeholder="网 址" v-model.trim.lazy="form.url" />
+      <div style="color:red; font-size:12px; display:none; color:#E8EAED" id="one">请输入正确的网址</div>
       <br />
       <span class="method" @click="addUrl">确 认</span>
       <span class="method" @click="cancelUrl">取 消</span>
     </section>
     <section class="edit-wrapper" :class="{active:seeTwo}">
-      <span>修 改 网 址：</span>
-      <br>
-      <input type="text" placeholder="网址（自动过滤）"  maxlength="30" v-model.trim="updateForm.url" />
-      <div style="color:red; font-size:16px; display:none" id="three">请输入正确的网址</div>
-      <input type="text" placeholder="名称（最多12字）" maxlength="12" v-model.trim="updateForm.name" />
+      <span style="line-height:30px; cursor:default;">修改网址</span>
+      <br />
+      <input
+        style="margin-top:10px;"
+        type="text"
+        placeholder="名 称"
+        maxlength="12"
+        v-model.trim="updateForm.name"
+      />
       <div style="color:red; font-size:16px; display:none" id="four">名称不可为空</div>
+      <br />
+      <input type="text" placeholder="网 址" v-model.trim="updateForm.url" />
+      <div style="color:red; font-size:16px; display:none" id="three">请输入正确的网址</div>
       <br />
       <span class="method" @click="editUrl">确 认</span>
       <span class="method" @click="cancelUrl">取 消</span>
     </section>
+    <section class="total-wrapper" :class="{active:seeOne||seeTwo}"></section>
   </main>
 </template>
 
@@ -50,7 +64,7 @@
 export default {
   data() {
     return {
-      form: {name:'',url:''},
+      form: { name: "", url: "" },
       updateForm: {},
       index: 0,
       n: 0,
@@ -72,6 +86,7 @@ export default {
         { name: "Boot CDN", url: "www.bootcdn.cn" },
         { name: "小小盛的博客", url: "eden-sheng.cn" }
       ],
+      showUrl: [],
       stringWeb: "",
       localWeb: ""
     };
@@ -82,23 +97,39 @@ export default {
       this.website = this.localWeb;
     }
   },
-  watch:{
-    form:{
-      handler:function(){
-        this.form.url = this.form.url.replace("http://", "")
-        .replace("http://", "")
-        .replace('http:','')
-        .replace(/\/.*/,'')
+  watch: {
+    form: {
+      handler: function() {
+        this.form.url = this.form.url
+          .replace("http://", "")
+          .replace("http://", "")
+          .replace("http:", "")
+          .replace(/\/.*/, "");
       },
-      deep:true
+      deep: true
     },
-    updateForm:{
-      handler:function(){
-        this.updateForm.url = this.updateForm.url.replace("http://", "")
-        .replace("http://", "")
-        .replace(/\/.*/,'')
+    website: {
+      handler: function() {
+        this.showUrl.splice(0, this.showUrl.length);
+        this.website.forEach(value => {
+          if (value.url.length >= 17) {
+            this.showUrl.push(value.url.substr(0, 17) + "...");
+          } else {
+            this.showUrl.push(value.url);
+          }
+        });
       },
-      deep:true
+      deep: true,
+      immediate: true
+    },
+    updateForm: {
+      handler: function() {
+        this.updateForm.url = this.updateForm.url
+          .replace("http://", "")
+          .replace("http://", "");
+        //.replace(/\/.*/, "");
+      },
+      deep: true
     }
   },
   methods: {
@@ -209,17 +240,17 @@ main {
   padding-right: 20px;
   position: relative;
 }
-main .main-wrapper{
+main .main-wrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
-main  div.website,
-main  div.create-website {
+main div.website,
+main div.create-website {
   width: 46%;
   height: 160px;
   border: 1px solid #cccccc;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 30px;
   display: flex;
   flex-flow: column wrap;
@@ -229,31 +260,32 @@ main  div.create-website {
   position: relative;
   box-shadow: 2px 2px 20px 0px rgba(71, 67, 71, 0.2);
   text-align: center;
+  background: white;
 }
-@media (min-width:900px) {
-  main{
+@media (min-width: 900px) {
+  main {
     width: 860px;
     margin-right: auto;
     margin-left: auto;
     justify-content: flex-start;
   }
-  main .main-wrapper{
-  justify-content: flex-start;
-  margin-left: 0;
-  margin-right: -15px;
+  main .main-wrapper {
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: -15px;
   }
-  main div.website{
+  main div.website {
     width: 150px;
     margin-right: 15px;
   }
-  main div.create-website{
+  main div.create-website {
     width: 150px;
     margin-right: 15px;
   }
-  main div.website .goToUrl:hover{
+  main div.website .goToUrl:hover {
     border: 1px solid black;
   }
-  main div.website .goToUrl:hover span.keys{
+  main div.website .goToUrl:hover span.keys {
     color: black;
   }
 }
@@ -261,19 +293,20 @@ main div.website span.keys {
   font-size: 12px;
   white-space: wrap;
   color: teal;
+  transform: translateY(10px);
 }
-main> div.website  span.webs-one {
+main > div.website span.webs-one {
   font-size: 14px;
   color: #aaaaaa;
   margin-top: 50px;
 }
-main  div.website  span.webs-two {
+main div.website span.webs-two {
   font-size: 12px;
   color: #aaaaaa;
   max-width: 100%;
   cursor: default;
 }
-main  div.website  span.numberIndex {
+main div.website span.numberIndex {
   position: absolute;
   left: 3px;
   top: 0;
@@ -282,17 +315,18 @@ main  div.website  span.numberIndex {
 }
 main div.website .goToUrl {
   border: 1px solid #dddddd;
-  border-radius: 10px;
+  border-radius: 50%;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   transform: translateY(30px);
-  width: 60%;
-  height: 65%;
+  width: 100px;
+  height: 100px;
   z-index: 1;
   cursor: pointer;
   transition: all 0.5s;
+  overflow: hidden;
 }
 main div.website .goToUrl img.icon-img {
   width: 26px;
@@ -304,6 +338,8 @@ main div.website img#edit-button {
   width: 16px;
   height: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+  opacity: 0.7;
 }
 main div.website img#delete-button {
   position: absolute;
@@ -312,6 +348,22 @@ main div.website img#delete-button {
   width: 20px;
   height: 20px;
   cursor: pointer;
+  transition: all 0.5s;
+  opacity: 0.7;
+}
+@media (min-width: 900px) {
+  main div.website img#edit-button {
+    opacity: 0.2;
+  }
+  main div.website img#edit-button:hover {
+    opacity: 1;
+  }
+  main div.website img#delete-button {
+    opacity: 0.2;
+  }
+  main div.website img#delete-button:hover {
+    opacity: 1;
+  }
 }
 main div.website img.get-ico {
   width: 20px;
@@ -323,7 +375,7 @@ main div.create-website img {
   cursor: pointer;
   transition: all 0.5s;
 }
-main div.create-website img:hover{
+main div.create-website img:hover {
   transform: rotate(90deg);
 }
 main div.create-website span {
@@ -333,25 +385,24 @@ main div.create-website span {
 }
 main section.input-wrapper {
   position: fixed;
-  width: 80%;
-  border: 1px solid black;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 40%;
-  background: #060606;
-  opacity: 0.7;
+  background: #292a2d;
+  opacity: 1;
   color: white;
   text-align: center;
   padding: 10px;
   border-radius: 5px;
   display: none;
-  z-index: 2;
+  z-index: 6;
 }
 @media (min-width: 700px) {
-  main section.input-wrapper{
-    width: 600px;
+  main section.input-wrapper {
+    width: 400px;
   }
 }
 main section.input-wrapper.active {
@@ -362,16 +413,19 @@ main section.input-wrapper .input-demo {
 }
 main section.input-wrapper span {
   margin: 0 15px;
-  font-size: 20px;
+  font-size: 16px;
+  color: #e8eaed;
 }
 main section.input-wrapper input {
   border-radius: 5px;
   border: 1px solid black;
-  font-size: 16px;
-  width: 70%;
+  font-size: 14px;
+  width: 90%;
   padding: 2px 10px;
-  margin: 10px 0 20px 0;
+  margin: 0 0 20px 0;
   text-align: center;
+  color: #e8eaed;
+  background: #1d1d1f;
 }
 main section.input-wrapper input:focus {
   outline: none;
@@ -380,32 +434,33 @@ main section.input-wrapper span.method {
   margin-left: 10px;
   margin-right: 10px;
   border: 1px solid white;
-  font-size: 16px;
+  font-size: 12px;
   padding: 2px 10px;
   border-radius: 5px;
+  color: #e8eaed;
+  cursor: pointer;
 }
 
 main section.edit-wrapper {
   position: fixed;
-  width: 80%;
-  border: 1px solid black;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 40%;
-  background: #060606;
-  opacity: 0.7;
+  background: #292a2d;
+  opacity: 1;
   color: white;
   text-align: center;
   padding: 10px;
   border-radius: 5px;
   display: none;
-  z-index: 2;
+  z-index: 6;
 }
 @media (min-width: 900px) {
-  main section.edit-wrapper{
-    width: 600px;
+  main section.edit-wrapper {
+    width: 400px;
   }
 }
 main section.edit-wrapper.active {
@@ -416,16 +471,19 @@ main section.edit-wrapper .input-demo {
 }
 main section.edit-wrapper span {
   margin: 0 15px;
-  font-size: 20px;
+  font-size: 16px;
+  color: #e8eaed;
 }
 main section.edit-wrapper input {
   border-radius: 5px;
   border: 1px solid black;
-  font-size: 16px;
-  width: 70%;
+  font-size: 14px;
+  width: 90%;
   padding: 2px 10px;
-  margin: 10px 0 20px 0;
+  margin: 0 0 20px 0;
   text-align: center;
+  color: #e8eaed;
+  background: #1d1d1f;
 }
 main section.edit-wrapper input:focus {
   outline: none;
@@ -434,8 +492,24 @@ main section.edit-wrapper span.method {
   margin-left: 10px;
   margin-right: 10px;
   border: 1px solid white;
-  font-size: 16px;
+  font-size: 12px;
   padding: 2px 10px;
   border-radius: 5px;
+  color: #e8eaed;
+  cursor: pointer;
+}
+main section.total-wrapper {
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: #1d1d1f;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  opacity: 0.5;
+  display: none;
+}
+main section.total-wrapper.active {
+  display: block;
 }
 </style>

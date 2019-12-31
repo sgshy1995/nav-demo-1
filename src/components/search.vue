@@ -2,7 +2,9 @@
   <div class="search">
     <div class="one"></div>
     <div class="two"></div>
-    <span class="what-to-see">想 看 点 什 么 ？</span>
+    <div class="webname">
+      <img src="../assets/edensheng.png" alt="webname" />
+    </div>
     <br />
     <form class="searchForm" method="get" :action="'https://'+search[n].url+search[n].path">
       <input type="text" :name="search[n].name" />
@@ -60,7 +62,7 @@ export default {
 <style lang="scss">
 header .search {
   width: 100%;
-  height: 262px;
+  height: 282px;
   background: #16a1a1;
   position: relative;
   overflow: hidden;
@@ -92,6 +94,9 @@ header .search .two {
   animation: 14s runner linear infinite;
   z-index: -1;
 }
+header .search .webname {
+  transform: translateY(0);
+}
 @media (min-width: 900px) {
   header .search .two {
     width: 600px;
@@ -99,7 +104,7 @@ header .search .two {
     top: -50%;
     right: -30%;
   }
-  header .search button:hover{
+  header .search button:hover {
     color: #0dbb33;
     border: 1px solid #0dbb33;
     cursor: pointer;
@@ -119,12 +124,19 @@ header .search span {
   cursor: default;
 }
 header .search input {
-  margin: 20px;
-  font-size: 16px;
+  margin: 10px 10px 0 0;
+  font-size: 12px;
+  line-height: 20px;
   border-radius: 4px;
   border: 1px solid black;
   padding: 5px 10px;
   opacity: 0.7;
+  transform: translateY(-10px);
+}
+@media (min-width: 600px) {
+  header .search input {
+    width: 30%;
+  }
 }
 header .search input:focus {
   outline: none;
@@ -136,6 +148,8 @@ header .search button {
   opacity: 0.7;
   padding: 5px;
   transition: all 0.5s;
+  line-height: 20px;
+  transform: translateY(-10px);
 }
 header .search .wrapper {
   display: flex;
