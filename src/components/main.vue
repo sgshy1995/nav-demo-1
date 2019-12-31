@@ -21,7 +21,7 @@
       </div>
     </div>
     <section class="input-wrapper" :class="{active:seeOne}">
-      <span style="line-height:30px; cursor:default;">新增快捷网址</span>
+      <span style="line-height:30px; cursor:default; font-family:'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;">新增快捷网址</span>
       <br />
       <input
         style="margin-top:10px;"
@@ -39,7 +39,7 @@
       <span class="method" @click="cancelUrl">取 消</span>
     </section>
     <section class="edit-wrapper" :class="{active:seeTwo}">
-      <span style="line-height:30px; cursor:default;">修改网址</span>
+      <span style="line-height:30px; cursor:default;  font-family:'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;">修改网址</span>
       <br />
       <input
         style="margin-top:10px;"
@@ -293,7 +293,8 @@ main div.website span.keys {
   font-size: 12px;
   white-space: wrap;
   color: teal;
-  transform: translateY(10px);
+  transform: translateY(20px);
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main > div.website span.webs-one {
   font-size: 14px;
@@ -305,6 +306,7 @@ main div.website span.webs-two {
   color: #aaaaaa;
   max-width: 100%;
   cursor: default;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main div.website span.numberIndex {
   position: absolute;
@@ -318,7 +320,7 @@ main div.website .goToUrl {
   border-radius: 50%;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   transform: translateY(30px);
   width: 100px;
@@ -330,6 +332,7 @@ main div.website .goToUrl {
 }
 main div.website .goToUrl img.icon-img {
   width: 26px;
+  transform: translateY(-10px);
 }
 main div.website img#edit-button {
   position: absolute;
@@ -353,13 +356,13 @@ main div.website img#delete-button {
 }
 @media (min-width: 900px) {
   main div.website img#edit-button {
-    opacity: 0.2;
+    opacity: 0.1;
   }
   main div.website img#edit-button:hover {
     opacity: 1;
   }
   main div.website img#delete-button {
-    opacity: 0.2;
+    opacity: 0.1;
   }
   main div.website img#delete-button:hover {
     opacity: 1;
@@ -382,6 +385,8 @@ main div.create-website span {
   font-size: 20px;
   margin-top: 20px;
   cursor: default;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+  transform: translateY(10px);
 }
 main section.input-wrapper {
   position: fixed;
@@ -415,6 +420,7 @@ main section.input-wrapper span {
   margin: 0 15px;
   font-size: 16px;
   color: #e8eaed;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main section.input-wrapper input {
   border-radius: 5px;
@@ -426,6 +432,7 @@ main section.input-wrapper input {
   text-align: center;
   color: #e8eaed;
   background: #1d1d1f;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main section.input-wrapper input:focus {
   outline: none;
@@ -439,6 +446,7 @@ main section.input-wrapper span.method {
   border-radius: 5px;
   color: #e8eaed;
   cursor: pointer;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 
 main section.edit-wrapper {
@@ -473,6 +481,7 @@ main section.edit-wrapper span {
   margin: 0 15px;
   font-size: 16px;
   color: #e8eaed;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main section.edit-wrapper input {
   border-radius: 5px;
@@ -484,6 +493,7 @@ main section.edit-wrapper input {
   text-align: center;
   color: #e8eaed;
   background: #1d1d1f;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main section.edit-wrapper input:focus {
   outline: none;
@@ -497,6 +507,7 @@ main section.edit-wrapper span.method {
   border-radius: 5px;
   color: #e8eaed;
   cursor: pointer;
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }
 main section.total-wrapper {
   top: 0;
