@@ -146,7 +146,7 @@ header .search button {
   border-radius: 5px;
   background: white;
   opacity: 0.7;
-  padding: 5px;
+  padding: 5px 10px;
   transition: all 0.5s;
   line-height: 20px;
   transform: translateY(-10px);
