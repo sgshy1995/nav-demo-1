@@ -4,10 +4,10 @@
       <div class="version-text">
         <h2>欢迎来到 南屋流星</h2>
         <br />
-        <span>版本: V 1.0.1.3/ MIT 许可</span>
+        <span>版本: V 1.0.1.3</span>
         <br />
-        <span>框架: Vue</span>
-        <br />
+        <span>信息: MIT 许可/ Vue 框架</span>
+        <br>
         <span>作者: Eden Sheng</span>
         <br />
         <span>Email: singlesaulwork@gmail.com</span>
@@ -22,11 +22,11 @@
           <li>动态获取网址 favicon.ico</li>
           <li>自由的增/删/改功能</li>
           <li>有时效性的保存</li>
-          <li>自动过滤输入网址协议</li>
-          <li>名称最长12个字符（包含中文）</li>
+          <li>自动过滤网址协议和空格</li>
+          <li>简单判断输入内容合法性</li>
           <li>一键还原</li>
           <li>一键回到顶部（一定高度显示）</li>
-          <li>只显示网址的缩写，你的二次复制是不可取的</li>
+          <li>太长情况只会显示网址的缩写</li>
         </ol>
         <br />
         <span>：）</span>
@@ -114,7 +114,7 @@ header nav .version-wrapper {
   justify-content: center;
   align-items: center;
   cursor: default;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   transition: all 0.5s;
 }
 header nav .version-wrapper.active {
@@ -169,6 +169,8 @@ header nav .menu .img img {
   cursor: pointer;
   transition: transform 0.5s;
   margin: 0 auto;
+  opacity: 0.5;
+  transition: all 0.7s;
 }
 header nav .version {
   transform: translateX(100%);
@@ -207,11 +209,12 @@ header nav .version .img img {
 header nav .menu .img img.active {
   background: #cccccc;
   border-radius: 50%;
-  transform: rotate(90deg);
+  transform: rotate(90deg) scale(1.1);
+  opacity: 1;
 }
 @media (min-width: 900px) {
   header nav .menu .img img:hover {
-    transform: scale(1.1);
+    opacity: 1;
   }
 }
 header nav .menulist {

@@ -11,7 +11,7 @@ new Vue({
 
 // Web Message
 !function () {
-  const v = '1.0.1'
+  const v = '1.0.1.3'
   console.log("Version: v", v)
   const email = 'edenshengwork@gmail.com'
   console.log("E-mail: ", email)

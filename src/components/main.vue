@@ -30,10 +30,10 @@
         maxlength="12"
         v-model.trim.lazy="form.name"
       />
-      <div style="color:red; font-size:12px; display:none; color:#E8EAED" id="two">名称不可为空</div>
+      <div style="font-size:12px; display:none; color:#E8EAED" id="two">名称不可为空</div>
       <br />
       <input type="text" placeholder="网 址" v-model.trim.lazy="form.url" />
-      <div style="color:red; font-size:12px; display:none; color:#E8EAED" id="one">请输入正确的网址</div>
+      <div style="font-size:12px; display:none; color:#E8EAED" id="one">请输入正确的网址</div>
       <br />
       <span class="method" @click="addUrl">确 认</span>
       <span class="method" @click="cancelUrl">取 消</span>
@@ -48,10 +48,10 @@
         maxlength="12"
         v-model.trim="updateForm.name"
       />
-      <div style="color:red; font-size:16px; display:none" id="four">名称不可为空</div>
+      <div style="font-size:12px; display:none; color:#E8EAED" id="four">名称不可为空</div>
       <br />
       <input type="text" placeholder="网 址" v-model.trim="updateForm.url" />
-      <div style="color:red; font-size:16px; display:none" id="three">请输入正确的网址</div>
+      <div style="font-size:12px; display:none; color:#E8EAED" id="three">请输入正确的网址</div>
       <br />
       <span class="method" @click="editUrl">确 认</span>
       <span class="method" @click="cancelUrl">取 消</span>
@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       form: { name: "", url: "" },
-      updateForm: {},
+      updateForm: { name: "", url: "" },
       index: 0,
       n: 0,
       seeOne: false,
