@@ -10,6 +10,7 @@
     <button @click="clearLC">恢 复 默 认</button>
   </section>
   <Height />
+  <Footer />
 </body>
 </template>
 
@@ -17,14 +18,17 @@
 import Header from "./components/header";
 import Main from "./components/main";
 import Height from "./components/height"
+import Footer from "./components/footer"
 export default {
   components: {
     Header: Header,
     Main: Main,
-    Height: Height
+    Height: Height,
+    Footer: Footer
   },
   mounted(){
     window.addEventListener("beforeunload", this.reloadWeb);
+    window.addEventListener("beforeunload", this.seeHeight)
   },
   methods:{
     clearLC(){
@@ -33,7 +37,16 @@ export default {
     },
     reloadWeb(){
       window.scrollTo(0,0);
+    },
+    seeHeight(){
+      let hrt = document.documentElement.clientHeight
+      window.onload = function () {
+        document.body.style.height = hrt + 'px'
+      }
     }
+  },
+  destroyed(){
+    window.removeEventListener("beforeunload")
   }
 };
 </script>
@@ -55,6 +68,7 @@ h1,h2,h3,h4,h5,h6{
 body {
   position: relative;
   background: #efefee;
+  margin: 0;
 }
 body .symbol-tittle{
   display: flex;
@@ -77,6 +91,7 @@ body .symbol-tittle .tittle {
 body .clearLC{
   display: flex;
   justify-content: center;
+  margin-bottom: 40px;
 }
 body .clearLC button{
   border: 1px solid black;
@@ -84,7 +99,7 @@ body .clearLC button{
   border-radius: 5px;
   font-size: 14px;
   background: #efefee;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   transition: all 0.3s;
   cursor: pointer;
 }

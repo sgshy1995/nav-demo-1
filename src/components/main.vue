@@ -29,10 +29,11 @@
         placeholder="名 称"
         maxlength="12"
         v-model.trim.lazy="form.name"
+        @click="updateHeight"
       />
       <div style="font-size:12px; display:none; color:#E8EAED" id="two">名称不可为空</div>
       <br />
-      <input type="text" placeholder="网 址" v-model.trim.lazy="form.url" />
+      <input type="text" placeholder="网 址" v-model.trim.lazy="form.url" @click="updateHeight" />
       <div style="font-size:12px; display:none; color:#E8EAED" id="one">请输入正确的网址</div>
       <br />
       <span class="method" @click="addUrl">确 认</span>
@@ -47,10 +48,11 @@
         placeholder="名 称"
         maxlength="12"
         v-model.trim.lazy="updateForm.name"
+        @click="updateHeight"
       />
       <div style="font-size:12px; display:none; color:#E8EAED" id="four">名称不可为空</div>
       <br />
-      <input type="text" placeholder="网 址" v-model.trim.lazy="updateForm.url" />
+      <input type="text" placeholder="网 址" v-model.trim.lazy="updateForm.url" @click="updateHeight" />
       <div style="font-size:12px; display:none; color:#E8EAED" id="three">请输入正确的网址</div>
       <br />
       <span class="method" @click="editUrl">确 认</span>
@@ -96,6 +98,7 @@ export default {
     if (this.localWeb) {
       this.website = this.localWeb;
     }
+    console.log(navigator.userAgent)
   },
   watch: {
     form: {
@@ -228,6 +231,15 @@ export default {
       );
       console.log(this.n);
       window.location.href = "https://" + this.website[this.n].url;
+    },
+    updateHeight(){
+      /* let menu = document.getElementById('foot-menu')
+      let heightL = menu.offsetTop
+      let footer = document.getElementById('footer-wrapper')
+      let heightS = footer.offsetTop
+      let n = heightS - heightL
+      menu.style = `position:relative; margin-top:${n}px` */
+      
     }
   }
 };
@@ -405,6 +417,8 @@ main section.input-wrapper {
   border-radius: 5px;
   display: none;
   z-index: 6;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 @media (min-width: 700px) {
   main section.input-wrapper {
@@ -466,6 +480,8 @@ main section.edit-wrapper {
   border-radius: 5px;
   display: none;
   z-index: 6;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 @media (min-width: 900px) {
   main section.edit-wrapper {
@@ -520,6 +536,7 @@ main section.total-wrapper {
   z-index: 5;
   opacity: 0.5;
   display: none;
+  margin: 0;
 }
 main section.total-wrapper.active {
   display: block;

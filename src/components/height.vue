@@ -47,7 +47,7 @@ export default {
 section.height {
   position: fixed;
   border: 1px solid #515151;
-  bottom: 3%;
+  bottom: 40px;
   right: 6%;
   padding: 10px 10px 5px 10px;
   border-radius: 5px;
