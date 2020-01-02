@@ -7,7 +7,7 @@
         <span>版本: V 1.0.1.3</span>
         <br />
         <span>信息: MIT 许可/ Vue 框架</span>
-        <br>
+        <br />
         <span>作者: Eden Sheng</span>
         <br />
         <span>Email: singlesaulwork@gmail.com</span>
@@ -49,11 +49,6 @@
         <img src="../assets/version.png" alt />
       </div>
     </div>
-    <div class="menu">
-      <div class="img">
-        <img src="../assets/menu.png" alt="menu" @click="styleChange" :class="{active:change}" />
-      </div>
-    </div>
     <div class="menulist" id="menulist" :class="{active:change}">
       <ul>
         <li :class="{active:change}" @click.stop="toGit" id="toGit">项 目 源 码</li>
@@ -61,6 +56,11 @@
         <!-- <li :class="{active:change}">V 1.0.2 功能</li>
         <li :class="{active:change}">V 1.0.3 功能</li>-->
       </ul>
+    </div>
+    <div class="menu">
+      <div class="img">
+        <img src="../assets/menu.png" alt="menu" @click="styleChange" :class="{active:change}" />
+      </div>
     </div>
   </nav>
 </template>
@@ -219,9 +219,6 @@ header nav .menu .img img.active {
 }
 header nav .menulist {
   background: #f4fafa;
-  position: absolute;
-  top: 99%;
-  right: 0;
   transform: translateX(100%);
   transition: all 0.5s;
   border: 1px solid #cccccc;
@@ -229,6 +226,9 @@ header nav .menulist {
   border-bottom-left-radius: 10px;
   text-align: center;
   overflow: hidden;
+  position: absolute;
+  top: 99%;
+  right: 0;
 }
 header nav .menulist.active {
   transform: translateX(0);
@@ -246,27 +246,53 @@ header nav .menulist ul li#toBlog:hover {
   cursor: pointer;
 }
 @media (min-width: 900px) {
+  header nav .menulist {
+    position: relative;
+    transform: translateX(300%);
+    border: none;
+  }
+  header nav .menulist.active {
+    transform: translateX(60%);
+  }
+  header nav .menulist ul {
+    display: flex;
+    text-align: center;
+  }
   header nav .menulist ul li {
-    padding: 16px 100px;
-    font-size: 18px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
   header nav .menulist ul li#toGit:hover {
     color: #aaaaaa;
+    border-bottom: 1px solid #aaaaaa !important;
+
   }
   header nav .menulist ul li#toBlog:hover {
     color: #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+
+  }
+  header nav .menulist ul li#toGit{
+    margin-right: 20px;
+    border-bottom: 1px solid cadetblue !important;
+  }
+  header nav .menulist ul li#toBlog {
+    border-bottom: 1px solid cadetblue;
   }
 }
-header nav .menulist ul li:nth-child(1) {
+header nav .menulist ul li#toGit {
   transform: translateX(120%);
   transition: 0.5s;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #aaaaaa;
 }
-header nav .menulist ul li:nth-child(2) {
+header nav .menulist ul li#toBlog {
   transform: translateX(150%);
-  transition: 0.7s;
+  transition: 1s;
 }
-header nav .menulist ul li.active {
+header nav .menulist ul li#toGit.active {
+  transform: translateX(0);
+}
+header nav .menulist ul li#toBlog.active {
   transform: translateX(0);
 }
 </style>

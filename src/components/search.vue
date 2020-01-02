@@ -107,7 +107,6 @@ header .search .webname {
   header .search button:hover {
     color: #0dbb33;
     border: 1px solid #0dbb33;
-    cursor: pointer;
   }
 }
 @keyframes runner {
@@ -150,6 +149,7 @@ header .search button {
   transition: all 0.5s;
   line-height: 20px;
   transform: translateY(-10px);
+  cursor: pointer;
 }
 header .search .wrapper {
   display: flex;
