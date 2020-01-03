@@ -248,7 +248,7 @@ header nav .menulist ul li#toBlog:hover {
 @media (min-width: 900px) {
   header nav .menulist {
     position: relative;
-    transform: translateX(300%);
+    transform: translateX(600%);
     border: none;
   }
   header nav .menulist.active {
